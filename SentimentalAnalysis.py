@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import re
+from textblob import TextBlob
 
 def readWordList():
     cwd = os.getcwd()
@@ -12,7 +13,6 @@ def cleanData(data) :
    return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", data).split())
 
 def offensive(tweet):
-    #msg = "Tweet stuff here"
     data = cleanData(readWordList())
     data = data.split(" ")
     for i in data:
@@ -29,4 +29,5 @@ def sentiment(tweet):
     elif analysis.sentiment.polarity == 0:
         return 0
     else:
-        return offensive(tweet)
+        offensive(tweet)
+        return -1
