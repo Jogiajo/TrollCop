@@ -16,54 +16,54 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Comments`
+-- Table structure for table `Replies`
 --
 
-DROP TABLE IF EXISTS `Comments`;
+DROP TABLE IF EXISTS `Replies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Comments` (
-  `photoId` varchar(2000) NOT NULL,
-  `userName` varchar(30) NOT NULL,
-  `comment` text,
+CREATE TABLE `Replies` (
+  `tweetId` varchar(20) NOT NULL,
+  `userName` varchar(40) NOT NULL,
+  `reply` text,
   `timestamp` datetime NOT NULL,
   `isTroll` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`photoId`,`timestamp`,`userName`),
+  PRIMARY KEY (`tweetId`,`userName`,`timestamp`),
   KEY `userName` (`userName`),
-  CONSTRAINT `Comments_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `User` (`userName`)
+  CONSTRAINT `Replies_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `Users` (`userName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Comments`
+-- Dumping data for table `Replies`
 --
 
-LOCK TABLES `Comments` WRITE;
-/*!40000 ALTER TABLE `Comments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Comments` ENABLE KEYS */;
+LOCK TABLES `Replies` WRITE;
+/*!40000 ALTER TABLE `Replies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Replies` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `User`
+-- Table structure for table `Users`
 --
 
-DROP TABLE IF EXISTS `User`;
+DROP TABLE IF EXISTS `Users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `User` (
-  `userName` varchar(30) NOT NULL,
+CREATE TABLE `Users` (
+  `userName` varchar(40) NOT NULL,
   `spamCount` int(11) DEFAULT NULL,
   PRIMARY KEY (`userName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `User`
+-- Dumping data for table `Users`
 --
 
-LOCK TABLES `User` WRITE;
-/*!40000 ALTER TABLE `User` DISABLE KEYS */;
-/*!40000 ALTER TABLE `User` ENABLE KEYS */;
+LOCK TABLES `Users` WRITE;
+/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -75,4 +75,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-24 17:57:48
+-- Dump completed on 2018-01-25  1:40:12
