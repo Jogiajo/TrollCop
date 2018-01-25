@@ -10,7 +10,7 @@ def readWordList():
     return data
 
 def cleanData(data) :
-   return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", data).split())
+   return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\#\w+:\/\/\S+)", " ", str(data)).split())
 
 def offensive(tweet):
     data = cleanData(readWordList())
@@ -19,15 +19,16 @@ def offensive(tweet):
         if tweet.find(i) == -1:
             continue
         else :
-            print("Offensive")
+            return True
             break
             
 def sentiment(tweet):
     analysis = TextBlob(cleanData(tweet))
     if analysis.sentiment.polarity > 0:
-        return 1
+        return True
     elif analysis.sentiment.polarity == 0:
-        return 0
+        return False
     else:
         offensive(tweet)
-        return -1
+    return False
+
